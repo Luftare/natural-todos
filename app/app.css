@@ -1,0 +1,71 @@
+* {
+  font-family: sans-serif;
+  font-weight: 200;
+}
+
+body {
+  background: linear-gradient(
+    356deg,
+    rgba(15, 15, 15, 1) 15%,
+    rgba(60, 60, 60, 1) 100%
+  );
+  background-image: url("/assets/background.jpg");
+  background-size: cover;
+  background-position: center;
+  padding: 2em;
+}
+
+.app {
+  width: 100%;
+  max-width: 400px;
+  min-height: 10em;
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 2em;
+  border-radius: 0.5em;
+}
+
+.todo-form {
+  width: 100%;
+  display: flex;
+}
+
+.todo-form__text-input {
+  flex-grow: 4;
+  margin-right: 0.5em;
+  border: solid;
+  border-radius: 0.5em;
+  border-width: 2px;
+  border-color: #999;
+  padding: 0.5em;
+  font-size: 1em;
+}
+
+.todo-form__submit-button {
+  font-size: 1em;
+  padding: 0.5em;
+  background-color: #6ced09;
+  border: solid;
+  border-color: #6ced09;
+  border-width: 2px;
+  flex-grow: 1;
+  border-radius: 0.5em;
+  box-sizing: border-box;
+}
+
+.todo-list {
+  padding-left: 1em;
+}
+
+.todo-list__item {
+  font-size: 1.2em;
+  margin-top: 0.3em;
+}
+
+.todo-list__empty-placeholder {
+  color: #555;
+}
+
+*:focus {
+  outline: none;
+  border-color: #915a0c;
+}
