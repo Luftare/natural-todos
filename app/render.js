@@ -1,3 +1,4 @@
+import { persistState } from "/storage.js";
 import { createTodo } from "/state.js";
 import { onAppear, on } from "/DOM.js";
 
@@ -15,6 +16,8 @@ const renderEmptyTodoListPlaceholder = () =>
   `<p class="todo-list__empty-placeholder">Nothing to do yet.</p>`;
 
 export const render = (state) => {
+  persistState(state);
+
   let newTodoLabel = "";
 
   const handleTodoFieldInput = (e) => {

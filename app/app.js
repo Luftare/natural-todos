@@ -1,9 +1,14 @@
 import { render } from "/render.js";
+import { getPersistedState } from "/storage.js";
 
-const getInitState = () => ({
-  todos: [],
-});
+const getState = () => {
+  const persistedState = getPersistedState();
 
-const initState = getInitState();
+  const initialState = {
+    todos: [],
+  };
 
-render(initState);
+  return persistedState ?? initialState;
+};
+
+render(getState());
