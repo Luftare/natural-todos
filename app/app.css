@@ -59,6 +59,14 @@ body {
   margin-top: 0.3em;
 }
 
+.todo-list__delete-item {
+  margin-left: 0.1em;
+  border: none;
+  background: none;
+  color: red;
+  font-weight: bold;
+}
+
 .todo-list__empty-placeholder {
   color: #555;
 }

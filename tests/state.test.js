@@ -1,4 +1,4 @@
-import { createTodo, toggleItemDone } from "../app/state";
+import { createTodo, removeTodo, toggleItemDone } from "../app/state";
 
 const initState = {
   todos: [],
@@ -46,6 +46,16 @@ describe("state", () => {
     expect(onceToggledState.todos[0].done).toBe(true);
     expect(twiceToggledState.todos[0].done).toBe(false);
     expect(onceToggledState).not.toBe(stateWithUnfinishedItem);
+    expectOriginalStateToBeUnchanged();
+  });
+
+  it("should be able to immutably remove items", () => {
+    const updatedState = removeTodo(stateWithUnfinishedItem.todos[0])(
+      stateWithUnfinishedItem
+    );
+
+    expect(updatedState.todos).toHaveLength(0);
+    expect(updatedState).not.toBe(stateWithUnfinishedItem);
     expectOriginalStateToBeUnchanged();
   });
 });

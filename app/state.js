@@ -15,3 +15,10 @@ export const toggleItemDone = (itemToToggle) => (state) => {
     ),
   };
 };
+
+export const removeTodo = (itemToRemove) => (state) => {
+  return {
+    ...state,
+    todos: state.todos.filter((item) => item !== itemToRemove),
+  };
+};

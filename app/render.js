@@ -1,24 +1,31 @@
 import { persistState } from "/storage.js";
-import { createTodo, toggleItemDone } from "/state.js";
+import { createTodo, removeTodo, toggleItemDone } from "/state.js";
 import { onAppear, on } from "/DOM.js";
 
 const rootElement = document.querySelector(".app");
 
-const renderTodoList = (state, handleItemToggleDone) => `
+const renderTodoList = (state, handleItemToggleDone, handleRemoveTodo) => `
   <ul class="todo-list">
     ${state.todos
       .map(
         (item) =>
           `<li class="todo-list__item">
-        <label ${item.done ? 'style="text-decoration: line-through;"' : ""}>
-          <input
-            type="checkbox"
-            ${item.done && "checked"}
-            ${on("change", handleItemToggleDone(item))}
-          /> 
-          ${item.label}
-        </label>
-      </li>`
+            <label ${item.done && 'style="text-decoration: line-through;"'}>
+              <input
+                type="checkbox"
+                ${item.done && "checked"}
+                ${on("change", handleItemToggleDone(item))}
+              /> 
+              ${item.label}
+            </label>
+
+            <button
+              class="todo-list__delete-item"
+              ${on("click", handleRemoveTodo(item))}
+            >
+              X
+            </button>
+          </li>`
       )
       .join("")}
   </ul>
@@ -45,6 +52,10 @@ export const render = (state) => {
     render(toggleItemDone(item)(state));
   };
 
+  const handleRemoveTodo = (item) => () => {
+    render(removeTodo(item)(state));
+  };
+
   rootElement.innerHTML = `
     <form
       class="todo-form"
@@ -67,7 +78,7 @@ export const render = (state) => {
     
     ${
       state.todos.length > 0
-        ? renderTodoList(state, handleItemToggleDone)
+        ? renderTodoList(state, handleItemToggleDone, handleRemoveTodo)
         : renderEmptyTodoListPlaceholder()
     }
   `;
