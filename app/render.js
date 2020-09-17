@@ -1,13 +1,25 @@
 import { persistState } from "/storage.js";
-import { createTodo } from "/state.js";
+import { createTodo, toggleItemDone } from "/state.js";
 import { onAppear, on } from "/DOM.js";
 
 const rootElement = document.querySelector(".app");
 
-const renderTodoList = (state) => `
+const renderTodoList = (state, handleItemToggleDone) => `
   <ul class="todo-list">
     ${state.todos
-      .map(({ label }) => `<li class="todo-list__item">${label}</li>`)
+      .map(
+        (item) =>
+          `<li class="todo-list__item">
+        <label ${item.done ? 'style="text-decoration: line-through;"' : ""}>
+          <input
+            type="checkbox"
+            ${item.done && "checked"}
+            ${on("change", handleItemToggleDone(item))}
+          /> 
+          ${item.label}
+        </label>
+      </li>`
+      )
       .join("")}
   </ul>
 `;
@@ -27,6 +39,10 @@ export const render = (state) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     render(createTodo(newTodoLabel)(state));
+  };
+
+  const handleItemToggleDone = (item) => () => {
+    render(toggleItemDone(item)(state));
   };
 
   rootElement.innerHTML = `
@@ -51,7 +67,7 @@ export const render = (state) => {
     
     ${
       state.todos.length > 0
-        ? renderTodoList(state)
+        ? renderTodoList(state, handleItemToggleDone)
         : renderEmptyTodoListPlaceholder()
     }
   `;

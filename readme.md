@@ -11,5 +11,5 @@ It's a simple todo app to track things to do during a workday. The app is target
 
 - [x] as a user, I can create a todo items, to remember what to do
 - [x] as a user, my previously added items persist even when closing the app, to not lose my notes
-- [ ] as a user, I can mark my items done, to know what's finished
+- [x] as a user, I can mark my items done, to know what's finished
 - [ ] as a user, I can remove todo items, to keep notes clean

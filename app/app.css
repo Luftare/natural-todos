@@ -44,9 +44,7 @@ body {
   font-size: 1em;
   padding: 0.5em;
   background-color: #6ced09;
-  border: solid;
-  border-color: #6ced09;
-  border-width: 2px;
+  border: none;
   flex-grow: 1;
   border-radius: 0.5em;
   box-sizing: border-box;
@@ -63,9 +61,4 @@ body {
 
 .todo-list__empty-placeholder {
   color: #555;
-}
-
-*:focus {
-  outline: none;
-  border-color: #915a0c;
 }
