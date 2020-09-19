@@ -12,16 +12,23 @@ body {
   background-image: url("/assets/background.jpg");
   background-size: cover;
   background-position: center;
-  padding: 2em;
 }
 
 .app {
   width: 100%;
-  max-width: 400px;
   min-height: 10em;
   background-color: rgba(255, 255, 255, 0.9);
-  padding: 2em;
+  padding: 1em;
+  box-sizing: border-box;
   border-radius: 0.5em;
+}
+
+@media only screen and (min-width: 600px) {
+  .app {
+    padding: 2em;
+    margin: 2em;
+    max-width: 400px;
+  }
 }
 
 .todo-form {
@@ -31,6 +38,7 @@ body {
 
 .todo-form__text-input {
   flex-grow: 4;
+  align-items: center;
   margin-right: 0.5em;
   border: solid;
   border-radius: 0.5em;
