@@ -9,18 +9,23 @@ const renderTodoList = (state, handleItemToggleDone, handleRemoveTodo) => `
     ${state.todos
       .map(
         (item) =>
-          `<li class="todo-list__item">
+          `<li class="todo-list__item" aria-label="${
+            item.done ? "Completed" : "Uncompleted"
+          } todo item">
             <label ${item.done && 'style="text-decoration: line-through;"'}>
               <input
                 type="checkbox"
+                aria-label="Toggle completed"
                 ${item.done && "checked"}
                 ${on("change", handleItemToggleDone(item))}
               /> 
+
               ${item.label}
             </label>
 
             <button
               class="todo-list__delete-item"
+              aria-label="Remove"
               ${on("click", handleRemoveTodo(item))}
             >
               X
@@ -64,6 +69,7 @@ export const render = (state) => {
       <input
         class="todo-form__text-input"
         placeholder="What to do today?"
+        aria-label="New todo item text field"
         value="${newTodoLabel}"
         ${on("input", handleTodoFieldInput)}
         ${onAppear((element) => element.focus())}
@@ -72,7 +78,7 @@ export const render = (state) => {
       <input
         class="todo-form__submit-button"
         type="submit"
-        value="add"
+        value="Add"
       />
     </form>
     
